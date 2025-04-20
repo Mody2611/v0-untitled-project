@@ -61,11 +61,9 @@
     "expo-font": "latest",
     "react-native": "latest",
     "@react-navigation/native": "latest",
-    "react-native-gesture-handler": "latest",
     "react-native-safe-area-context": "latest",
     "react-native-screens": "latest",
     "@expo/vector-icons": "latest",
-    "@react-navigation/stack": "latest",
     "@react-navigation/native-stack": "latest",
     "@react-navigation/bottom-tabs": "latest"
   },

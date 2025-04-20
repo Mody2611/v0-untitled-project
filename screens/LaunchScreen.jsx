@@ -1,35 +1,10 @@
-"use client"
+import { View, Text, StyleSheet } from "react-native"
 
-import { useEffect } from "react"
-import { View, Text, StyleSheet, SafeAreaView } from "react-native"
-import { useNavigation } from "@react-navigation/native"
-import type { StackNavigationProp } from "@react-navigation/stack"
-
-// Define the navigation param list type
-type RootStackParamList = {
-  Launch: undefined
-  SignIn: undefined
-  Main: undefined
-}
-
-type LaunchScreenNavigationProp = StackNavigationProp<RootStackParamList, "Launch">
-
+// Extremely simplified launch screen with no dependencies
 const LaunchScreen = () => {
-  const navigation = useNavigation<LaunchScreenNavigationProp>()
-
-  useEffect(() => {
-    // Auto-navigate to SignIn screen after 3 seconds
-    const timer = setTimeout(() => {
-      navigation.replace("SignIn")
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [navigation])
-
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.content}>
-        {/* Use a simple View with background color instead of an image to avoid potential issues */}
         <View style={styles.logoPlaceholder}>
           <Text style={styles.logoPlaceholderText}>GP</Text>
         </View>
@@ -41,7 +16,7 @@ const LaunchScreen = () => {
         <View style={styles.paginationDot} />
         <View style={styles.paginationDot} />
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
