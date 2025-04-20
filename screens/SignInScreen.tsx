@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, SafeAreaView } from "react-native"
 
 const SignInScreen = ({ navigation }) => {
-  // Original SignInScreen UI with no splash screen functionality
   return (
     <ImageBackground
       source={{
@@ -38,7 +37,6 @@ const SignInScreen = ({ navigation }) => {
   )
 }
 
-// Original styles for the sign-in screen
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
