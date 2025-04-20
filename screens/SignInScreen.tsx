@@ -1,6 +1,42 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, SafeAreaView } from "react-native"
 
 const SignInScreen = ({ navigation }) => {
+  // Add state to control whether to show splash screen or sign-in UI
+  const [showSplash, setShowSplash] = useState(true)
+
+  useEffect(() => {
+    // Auto-hide splash screen after 3 seconds
+    const timer = setTimeout(() => {
+      setShowSplash(false)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Render splash screen if showSplash is true
+  if (showSplash) {
+    return (
+      <View style={splashStyles.container}>
+        <View style={splashStyles.content}>
+          <View style={splashStyles.logoPlaceholder}>
+            <Text style={splashStyles.logoPlaceholderText}>GP</Text>
+          </View>
+          <Text style={splashStyles.logoText}>GreenTech Pots</Text>
+        </View>
+
+        <View style={splashStyles.paginationContainer}>
+          <View style={[splashStyles.paginationDot, splashStyles.activeDot]} />
+          <View style={splashStyles.paginationDot} />
+          <View style={splashStyles.paginationDot} />
+        </View>
+      </View>
+    )
+  }
+
+  // Original SignInScreen UI
   return (
     <ImageBackground
       source={{
@@ -37,6 +73,56 @@ const SignInScreen = ({ navigation }) => {
   )
 }
 
+// Styles for the splash screen
+const splashStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#F5F5F5",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoPlaceholder: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: "#4CAF50",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  logoPlaceholderText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  logoText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#4CAF50",
+  },
+  paginationContainer: {
+    flexDirection: "row",
+    marginBottom: 40,
+  },
+  paginationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#CCCCCC",
+    marginHorizontal: 4,
+  },
+  activeDot: {
+    backgroundColor: "#4CAF50",
+    width: 16,
+  },
+})
+
+// Original styles for the sign-in screen
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
