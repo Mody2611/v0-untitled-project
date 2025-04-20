@@ -1,7 +1,18 @@
+"use client"
+
+import { useEffect } from "react"
 import { View, Text, StyleSheet } from "react-native"
 
-// Extremely simplified launch screen with no dependencies
-const LaunchScreen = () => {
+// Simple launch screen with minimal dependencies
+const LaunchScreen = ({ navigation }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace("SignIn")
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [navigation])
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>

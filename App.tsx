@@ -1,6 +1,3 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -62,80 +59,63 @@ function MainTabs() {
 }
 
 export default function App() {
-  // Handle the initial screen state here instead of in the LaunchScreen component
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    // Auto-navigate to SignIn screen after 3 seconds
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={isLoading ? "Launch" : "SignIn"}>
-          {isLoading ? (
-            <Stack.Screen name="Launch" component={LaunchScreen} options={{ headerShown: false }} />
-          ) : (
-            <>
-              <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
-              <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
-              <Stack.Screen
-                name="PlantDetail"
-                component={PlantDetailScreen}
-                options={{
-                  headerTitle: "",
-                  headerBackTitle: " ",
-                  headerTransparent: true,
-                }}
-              />
-              <Stack.Screen
-                name="ProductDetails"
-                component={ProductDetailsScreen}
-                options={{
-                  headerTitle: "Product Details",
-                  headerBackTitle: " ",
-                }}
-              />
-              <Stack.Screen
-                name="ProductDetails2"
-                component={ProductDetails2Screen}
-                options={{
-                  headerTitle: "Product Details 2",
-                  headerBackTitle: " ",
-                }}
-              />
-              <Stack.Screen
-                name="ProductDetails3"
-                component={ProductDetails3Screen}
-                options={{
-                  headerTitle: "Product Details 3",
-                  headerBackTitle: " ",
-                }}
-              />
-              <Stack.Screen
-                name="ProductDetails4"
-                component={ProductDetails4Screen}
-                options={{
-                  headerTitle: "Product Details 4",
-                  headerBackTitle: " ",
-                }}
-              />
-              <Stack.Screen
-                name="Favorites"
-                component={FavoritesScreen}
-                options={{
-                  headerTitle: "Favorite Products",
-                  headerBackTitle: " ",
-                }}
-              />
-            </>
-          )}
+        <Stack.Navigator initialRouteName="Launch">
+          <Stack.Screen name="Launch" component={LaunchScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="PlantDetail"
+            component={PlantDetailScreen}
+            options={{
+              headerTitle: "",
+              headerBackTitle: " ",
+              headerTransparent: true,
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetailsScreen}
+            options={{
+              headerTitle: "Product Details",
+              headerBackTitle: " ",
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails2"
+            component={ProductDetails2Screen}
+            options={{
+              headerTitle: "Product Details 2",
+              headerBackTitle: " ",
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails3"
+            component={ProductDetails3Screen}
+            options={{
+              headerTitle: "Product Details 3",
+              headerBackTitle: " ",
+            }}
+          />
+          <Stack.Screen
+            name="ProductDetails4"
+            component={ProductDetails4Screen}
+            options={{
+              headerTitle: "Product Details 4",
+              headerBackTitle: " ",
+            }}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={FavoritesScreen}
+            options={{
+              headerTitle: "Favorite Products",
+              headerBackTitle: " ",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
