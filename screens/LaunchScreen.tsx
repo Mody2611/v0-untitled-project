@@ -1,16 +1,26 @@
 "use client"
 
 import { useEffect } from "react"
-import { View, Text, StyleSheet, Image, SafeAreaView } from "react-native"
+import { View, Text, StyleSheet, SafeAreaView } from "react-native"
 import { useNavigation } from "@react-navigation/native"
+import type { StackNavigationProp } from "@react-navigation/stack"
+
+// Define the navigation param list type
+type RootStackParamList = {
+  Launch: undefined
+  SignIn: undefined
+  Main: undefined
+}
+
+type LaunchScreenNavigationProp = StackNavigationProp<RootStackParamList, "Launch">
 
 const LaunchScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<LaunchScreenNavigationProp>()
 
   useEffect(() => {
     // Auto-navigate to SignIn screen after 3 seconds
     const timer = setTimeout(() => {
-      navigation.navigate("SignIn")
+      navigation.replace("SignIn")
     }, 3000)
 
     return () => clearTimeout(timer)
@@ -19,7 +29,10 @@ const LaunchScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Image source={require("../assets/logo.png")} style={styles.logo} resizeMode="contain" />
+        {/* Use a simple View with background color instead of an image to avoid potential issues */}
+        <View style={styles.logoPlaceholder}>
+          <Text style={styles.logoPlaceholderText}>GP</Text>
+        </View>
         <Text style={styles.logoText}>GreenTech Pots</Text>
       </View>
 
@@ -44,10 +57,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  logo: {
+  logoPlaceholder: {
     width: 80,
     height: 80,
+    borderRadius: 40,
+    backgroundColor: "#4CAF50",
+    justifyContent: "center",
+    alignItems: "center",
     marginBottom: 10,
+  },
+  logoPlaceholderText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
   },
   logoText: {
     fontSize: 18,
