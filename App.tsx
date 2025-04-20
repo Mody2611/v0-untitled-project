@@ -6,6 +6,7 @@ import { StatusBar } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
 // Screens
+import LaunchScreen from "./screens/LaunchScreen"
 import SignInScreen from "./screens/SignInScreen"
 import HomeScreen from "./screens/HomeScreen"
 import SearchScreen from "./screens/SearchScreen"
@@ -62,7 +63,8 @@ export default function App() {
     <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Navigator initialRouteName="Launch">
+          <Stack.Screen name="Launch" component={LaunchScreen} options={{ headerShown: false }} />
           <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
           <Stack.Screen
